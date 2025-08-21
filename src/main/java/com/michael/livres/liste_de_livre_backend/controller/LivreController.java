@@ -54,6 +54,7 @@ public class LivreController {
             livre.setAuteur(livreDetails.getAuteur());
             livre.setAnneePublication(livreDetails.getAnneePublication());
             livre.setIsbn(livreDetails.getIsbn());
+            livre.setGenre(livreDetails.getGenre());
             // La date_ajout n'est généralement pas mise à jour manuellement
             return new ResponseEntity<>(livreRepository.save(livre), HttpStatus.OK);
         } else {
