@@ -4,7 +4,6 @@ import com.michael.livres.liste_de_livre_backend.filter.JwtAuthFilter;
 import com.michael.livres.liste_de_livre_backend.repository.UserRepository;
 import com.michael.livres.liste_de_livre_backend.service.UserInfoUserDetailsService;
 import com.michael.livres.liste_de_livre_backend.service.JwtService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -23,7 +22,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -58,7 +56,7 @@ public class SecurityConfig {
  @Bean
  public CorsConfigurationSource corsConfigurationSource() {
      CorsConfiguration configuration = new CorsConfiguration();
-     configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
+     configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080", "https://liste-de-livre-frontend.vercel.app/"));
      configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
      configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
      configuration.setAllowCredentials(true);
