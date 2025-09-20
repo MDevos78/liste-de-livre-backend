@@ -8,7 +8,7 @@ COPY . .
 
 # Exécutez le build Maven, en sautant les tests.
 # La commande est maintenant lancée depuis la racine du projet dans le conteneur.
-RUN mvn clean install -DskipTests
+RUN mvn clean install
 
 ---
 
