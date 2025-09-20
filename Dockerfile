@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 # Copie des fichiers de projet nécessaires
 COPY pom.xml .
-COPY src ./src
+COPY code ./code
 
 # Exécution du build Maven
 RUN mvn clean install -DskipTests
