@@ -1,10 +1,11 @@
 # Étape 1 : Le "Build Stage"
-# Nous utilisons une image Maven et JDK 17 pour compiler votre code.
 FROM maven:3.8.7-openjdk-17 AS build
 
 # Copiez l'intégralité du contenu de votre projet (le ".") dans le conteneur.
 # C'est la méthode la plus sûre pour éviter les erreurs de chemin.
-COPY . .
+COPY pom.xml .
+
+COPY src ./src
 
 # Exécutez le build Maven, en sautant les tests.
 # La commande est maintenant lancée depuis la racine du projet dans le conteneur.
