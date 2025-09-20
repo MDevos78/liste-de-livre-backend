@@ -3,11 +3,11 @@
 FROM maven:3.8.7-openjdk-17 AS build
 
 # Définition du répertoire de travail dans le conteneur
-WORKDIR /usr/src/app
+WORKDIR /usr/
 
 # Copie des fichiers de projet nécessaires
 COPY pom.xml .
-COPY src ./src
+COPY src 
 
 # Exécution du build Maven
 # Le "-DskipTests" est crucial car c'est la seule façon pour que votre build passe.
