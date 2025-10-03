@@ -1,4 +1,4 @@
-package com.michael.livres.liste_de_livre_backend.model; // Assurez-vous que ce package correspond au vôtre
+package com.michael.livres.liste_de_livre_backend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,9 +12,10 @@ import jakarta.persistence.Column;
 import java.time.LocalDateTime;
 import jakarta.persistence.Table;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore; // ⭐ NOUVEL IMPORT
 
 @Entity
-@Table(name = "livres") // <-- Ajoutez cette ligne pour spécifier le nom de la table
+@Table(name = "livres")
 @Data
 public class Livre {
 
@@ -40,7 +41,8 @@ public class Livre {
     private String genre;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id") // ⭐ Lie le livre à l'utilisateur
+    @JoinColumn(name = "user_id")
+    @JsonIgnore // ⭐ COUPE la boucle ici pour que la sérialisation d'un Livre n'inclue pas tous les détails de l'User.
     private User user;
 
     public Livre() {}
@@ -108,8 +110,8 @@ public class Livre {
     	}
     public User user() {
     	return user;
-    }
+    	}
     public void setUser(User user) {
         this.user = user;
-    }
+    	}
 }

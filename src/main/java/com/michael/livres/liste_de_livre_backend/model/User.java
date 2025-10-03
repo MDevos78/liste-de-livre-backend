@@ -2,6 +2,7 @@ package com.michael.livres.liste_de_livre_backend.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore; // ⭐ NOUVEL IMPORT
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -11,9 +12,10 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
 	@Column(unique = true, nullable = false)
     private String username;
@@ -27,7 +29,8 @@ public class User {
     @Column(name = "created_at", insertable = false, updatable = false)
     private OffsetDateTime createdAt;
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) // ⭐ Lie l'utilisateur à ses livres
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore // ⭐ COUPE la boucle ici pour que la sérialisation d'un User n'inclue pas sa liste de Livres (ce qui causerait la boucle)
     private List<Livre> livres;
     
     
